@@ -5,8 +5,8 @@ const About = () => {
   return (
     <div className="about-container">
       <div className="about-header">
-        <h1 className='text'>About Ashwanth Maths</h1>
-        <p  className='text'>Welcome to Ashwanth Maths, where learning math becomes an exciting and engaging journey!</p>
+        <h1 className='text'>About Sri Sandhiya Institution</h1>
+        <p  className='text'>Welcome to Sri Sandhiya Institution, where learning math becomes an exciting and engaging journey!</p>
       </div>
 
       <div className="about-content">
@@ -14,7 +14,7 @@ const About = () => {
           <h2>Our Mission</h2>
           <p className='text'>
             Our mission is to provide high-quality mathematics tutoring to students of all levels. Whether you're
-            preparing for exams, need help with homework, or simply want to master math, Ashwanth Maths is here to help you
+            preparing for exams, need help with homework, or simply want to master math, Sri Sandhiya Institution is here to help you
             achieve your academic goals.
           </p>
         </section>

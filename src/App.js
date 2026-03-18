@@ -1,7 +1,7 @@
 // App.js - Complete file with all icons imported
 import { useState, useEffect } from 'react';
-import { 
-  FiMenu, FiX, FiArrowRight, FiMapPin, FiClock, FiPhone, 
+import {
+  FiMenu, FiX, FiArrowRight, FiMapPin, FiClock, FiPhone,
   FiHome, FiBook, FiStar, FiCheck, FiUser, FiAward, FiCalendar,
   FiMail, FiInstagram, FiFacebook, FiTwitter, FiYoutube,
   FiTrendingUp, FiPieChart, FiBarChart2, FiZap, FiTarget,
@@ -25,17 +25,27 @@ function Home() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const navigate = useNavigate();
+  const [currentAboutSlide, setCurrentAboutSlide] = useState(0);
+  const aboutImages = ['./sri.png', './icon.png'];
+
+  // Handle about section image slider
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentAboutSlide((prev) => (prev + 1) % aboutImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [aboutImages.length]);
 
   // Handle scroll effect for navbar and scroll top button
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       setShowScrollTop(window.scrollY > 500);
-      
+
       // Update active section based on scroll position
       const sections = ['home', 'about', 'subjects', 'programs', 'testimonials', 'contact'];
       const scrollPosition = window.scrollY + 100;
-      
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -47,7 +57,7 @@ function Home() {
         }
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -60,7 +70,7 @@ function Home() {
         setIsMenuOpen(false);
       }
     };
-    
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, [isMenuOpen]);
@@ -108,10 +118,10 @@ function Home() {
           }
         });
       };
-      
+
       window.addEventListener('scroll', animateOnScroll);
       setTimeout(animateOnScroll, 200);
-      
+
       return () => window.removeEventListener('scroll', animateOnScroll);
     }, []);
   };
@@ -125,7 +135,7 @@ function Home() {
 
   // Open external enrollment link
   const openBookingForm = () => {
-    window.open('https://www.annauniv.edu/result.php', '_blank');
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSd19a_uY7knGxkNX85GkubGmZGsE0W1lhf66xHU9Ty_MsYBzA/viewform?usp=header', '_blank');
   };
 
   // Scroll to top
@@ -143,17 +153,17 @@ function Home() {
         <div className="container header-container">
           <div className="logo">
             <Link to="/" onClick={() => scrollToSection('home')}>
-              <h1>Ashwanth<span>Maths</span></h1>
+              <h1>SRi Sandhiya<span>Institution</span></h1>
             </Link>
           </div>
-          
+
           <div className="header-actions">
-           
+
             <div className="menu-toggle" onClick={toggleMenu}>
               {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </div>
           </div>
-          
+
           <nav className={`navbar ${isMenuOpen ? 'active' : ''}`}>
             <ul className="nav-links">
               <li><a href="#home" className={activeSection === 'home' ? 'active' : ''} onClick={() => scrollToSection('home')}>Home</a></li>
@@ -218,17 +228,35 @@ function Home() {
             <h2 className="section-title">Building Strong Mathematical Foundations</h2>
             <p className="section-subtitle">Since 2010, we've been transforming students' relationship with mathematics through personalized attention and proven teaching methods.</p>
           </div>
-          
+
           <div className="about-content">
             <div className="about-image animate-on-scroll">
-              <img src="./sri.png" alt="Mathematics Tutor" />
-
+              <div className="about-slider">
+                {aboutImages.map((img, index) => (
+                  <img 
+                    key={index}
+                    src={img} 
+                    alt={`Sri Sandhiya Institution Slide ${index + 1}`}
+                    className={`slider-img ${index === currentAboutSlide ? 'active' : ''}`}
+                  />
+                ))}
+                <div className="slider-controls">
+                  {aboutImages.map((_, index) => (
+                    <button 
+                      key={index} 
+                      className={`slider-dot ${index === currentAboutSlide ? 'active' : ''}`}
+                      onClick={() => setCurrentAboutSlide(index)}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
-            
+
             <div className="about-text animate-on-scroll">
-              <h3>Why Choose Ashwanth Maths?</h3>
-              <p>At Ashwanth Maths, we believe that every student has the potential to excel in mathematics with the right guidance and approach. Our proven methodology combines traditional teaching with modern techniques to ensure comprehensive understanding and application.</p>
-              
+              <h3>Why Choose Sri Sandhiya Institution?</h3>
+              <p>At Sri Sandhiya Institution, we believe that every student has the potential to excel in mathematics with the right guidance and approach. Our proven methodology combines traditional teaching with modern techniques to ensure comprehensive understanding and application.</p>
+
               <div className="features-grid">
                 <div className="feature-item">
                   <div className="feature-icon-wrapper">
@@ -267,7 +295,7 @@ function Home() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="about-stats">
                 <div className="stat-item">
                   <span className="stat-number">15+</span>
@@ -295,7 +323,7 @@ function Home() {
             <h2 className="section-title">Premium Tutoring Programs</h2>
             <p className="section-subtitle">Choose the program that fits your educational needs and learning style</p>
           </div>
-          
+
           <div className="programs-container">
             {/* Home Personal Tuition with Image on Right */}
             <div className="program-card-with-image animate-on-scroll">
@@ -304,17 +332,27 @@ function Home() {
                   <h3>Home Personal Tuition</h3>
                   <div className="program-tag">Doorstep Service</div>
                 </div>
-                
+
                 <div className="faculty-section">
                   <h4>Expert Faculty:</h4>
                   <div className="faculty-member">
                     <div className="faculty-avatar">
-                      <FiUser />
+                      <img src="./photo1.jpg" alt="Sathish Dhanabal - Mathematics Specialist at Sri Sandhiya Institute" />
                     </div>
                     <div className="faculty-info">
                       <h5>Sathish Dhanabal</h5>
                       <p>Mathematics Specialist</p>
-                      <span className="experience-badge">8+ years experience</span>
+                      <span className="experience-badge">15+ years experience</span>
+                    </div>
+                  </div>
+                  <div className="faculty-member">
+                    <div className="faculty-avatar">
+                      <img src="./f2.jpg" alt="Ramya Sathish - Sri Sandhiya Institute" />
+                    </div>
+                    <div className="faculty-info">
+                      <h5>Ramya Sathish</h5>
+                      <p>Physics, Chemistry Specialist & Hindi</p>
+                      <span className="experience-badge">15+ years experience</span>
                     </div>
                   </div>
                 </div>
@@ -328,10 +366,10 @@ function Home() {
                   <li><FiCheck className="feature-icon" /> Flexible scheduling options</li>
                   <li><FiCheck className="feature-icon" /> Parent progress reports</li>
                 </ul>
-                
+
                 <div className="program-footer">
-                  <button 
-                    className="details-button" 
+                  <button
+                    className="details-button"
                     onClick={() => handleNavigateToDetails('home-personal')}
                   >
                     View Details <FiArrowRight className="btn-icon" />
@@ -341,11 +379,11 @@ function Home() {
                   </button>
                 </div>
               </div>
-              
+
               <div className="program-image-right">
-                <img 
-                  src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Home Tutoring Session" 
+                <img
+                  src="./photo2.jpg"
+                  alt="Personalized Home Tuition Session in Tambaram Chennai"
                   className="program-image"
                 />
                 <div className="image-overlay-content">
@@ -366,7 +404,7 @@ function Home() {
             <h2 className="section-title">Comprehensive Subject Coverage</h2>
             <p className="section-subtitle">Expert guidance across all mathematical and scientific disciplines</p>
           </div>
-          
+
           <div className="subjects-grid">
             {/* CBSE Maths - Image on Right */}
             <div className="subject-card-with-image image-right animate-on-scroll">
@@ -374,7 +412,7 @@ function Home() {
                 <div className="subject-icon-wrapper">
                   <FiBookOpen className="subject-icon" />
                 </div>
-                <h3>CBSE Maths</h3>
+                <h3>STATE BOARD / CBSE / ICSE / IGCSE        MATHEMATICS</h3>
                 <p className="subject-description">Master equations, functions, and algebraic structures with our specialized approach to this fundamental branch of mathematics.</p>
                 <div className="subject-meta">
                   <span className="experience-badge">12+ Years Teaching</span>
@@ -383,25 +421,27 @@ function Home() {
                   <span><FiCheck /> NCERT Solutions</span>
                   <span><FiCheck /> Board Exam Prep</span>
                   <span><FiCheck /> Sample Papers</span>
+                  <span><FiCheck /> Weekly Test</span>
+
                 </div>
               </div>
               <div className="subject-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="CBSE Maths Tutoring" 
+                <img
+                  src="./p1.jpg"
+                  alt="Board Exam Mathematics Tuition for CBSE, ICSE and State Board"
                   className="subject-image"
                   loading="lazy"
                 />
                 <div className="image-caption">CBSE Curriculum Specialists</div>
               </div>
             </div>
-            
+
             {/* Mathematics - Image on Left */}
             <div className="subject-card-with-image image-left animate-on-scroll">
               <div className="subject-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Mathematics Tutoring" 
+                <img
+                  src="./p2.png"
+                  alt="Advanced Mathematics Coaching Classe in Irumbuliyur"
                   className="subject-image"
                   loading="lazy"
                 />
@@ -423,7 +463,7 @@ function Home() {
                 </div>
               </div>
             </div>
-            
+
             {/* Physics - Image on Right */}
             <div className="subject-card-with-image image-right animate-on-scroll">
               <div className="subject-content">
@@ -433,6 +473,7 @@ function Home() {
                 <h3>Physics</h3>
                 <p className="subject-description">Explore the fundamental laws of nature with our comprehensive physics program. From mechanics to quantum physics, we make complex concepts clear.</p>
                 <div className="subject-meta">
+                  <span className="experience-badge">Faculty: Ramya</span>
                   <span className="experience-badge">10+ Years Teaching</span>
                 </div>
                 <div className="subject-highlights">
@@ -442,27 +483,47 @@ function Home() {
                 </div>
               </div>
               <div className="subject-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1636466497217-26a8cbeaf0aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Physics Tutoring" 
+                <img
+                  src="./p3.png"
+                  alt="Physics Tuition and Experiments at Sri Sandhiya Institute"
                   className="subject-image"
                   loading="lazy"
                 />
                 <div className="image-caption">Physics Lab Experiments</div>
               </div>
             </div>
-            
-            {/* Chemistry - Image on Left */}
+
+            {/* JEE - Image on Left */}
             <div className="subject-card-with-image image-left animate-on-scroll">
               <div className="subject-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Chemistry Tutoring" 
+                <img
+                  src="./p4.png"
+                  alt="IIT JEE and NEET Foundation Course Training"
                   className="subject-image"
                   loading="lazy"
                 />
-                <div className="image-caption">Chemistry Lab Sessions</div>
+                <div className="image-caption">Advanced Entrance Prep</div>
               </div>
+              <div className="subject-content">
+                <div className="subject-icon-wrapper">
+                  <FiTarget className="subject-icon" />
+                </div>
+                <h3>IIT - JEE / NEET Foundation Course <span style={{ fontSize: '0.7em', fontWeight: '500', display: 'block', marginTop: '5px', opacity: 0.8 }}>(For 8th to 12th)</span></h3>
+                <p className="subject-description">Excel in the Joint Entrance Examination with our rigorous training module. We focus on conceptual depth and problem-solving speed required for India's top engineering universities.</p>
+                <div className="subject-meta">
+                  <span className="experience-badge">10+ Years JEE Experience</span>
+                </div>
+                <div className="subject-highlights">
+                  <span><FiCheck /> Conceptual Clarity</span>
+                  <span><FiCheck /> Speed & Accuracy</span>
+                  <span><FiCheck /> Rank Boosters</span>
+                  <span><FiCheck /> Mock Tests</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Chemistry - Image on Right */}
+            <div className="subject-card-with-image image-right animate-on-scroll">
               <div className="subject-content">
                 <div className="subject-icon-wrapper">
                   <FiPieChart className="subject-icon" />
@@ -470,6 +531,7 @@ function Home() {
                 <h3>Chemistry</h3>
                 <p className="subject-description">Master the science of matter with our hands-on chemistry program. Learn organic, inorganic, and physical chemistry with real-world applications.</p>
                 <div className="subject-meta">
+                  <span className="experience-badge">Faculty: Ramya </span>
                   <span className="experience-badge">8+ Years Teaching</span>
                 </div>
                 <div className="subject-highlights">
@@ -478,10 +540,28 @@ function Home() {
                   <span><FiCheck /> Lab Techniques</span>
                 </div>
               </div>
+              <div className="subject-image-wrapper">
+                <img
+                  src="./p5.png"
+                  alt="Chemistry Tuition Classes and Lab Training"
+                  className="subject-image"
+                  loading="lazy"
+                />
+                <div className="image-caption">Chemistry Lab Sessions</div>
+              </div>
             </div>
-            
-            {/* Business Maths - Image on Right */}
-            <div className="subject-card-with-image image-right animate-on-scroll">
+
+            {/* Business Maths - Image on Left */}
+            <div className="subject-card-with-image image-left animate-on-scroll">
+              <div className="subject-image-wrapper">
+                <img
+                  src="./p6.png"
+                  alt="Business Mathematics and Statistics Coaching"
+                  className="subject-image"
+                  loading="lazy"
+                />
+                <div className="image-caption">Business Analytics</div>
+              </div>
               <div className="subject-content">
                 <div className="subject-icon-wrapper">
                   <FiBarChart2 className="subject-icon" />
@@ -497,28 +577,10 @@ function Home() {
                   <span><FiCheck /> Data Analysis</span>
                 </div>
               </div>
-              <div className="subject-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Business Mathematics" 
-                  className="subject-image"
-                  loading="lazy"
-                />
-                <div className="image-caption">Business Analytics</div>
-              </div>
             </div>
-            
-            {/* Hindi - Image on Left */}
-            <div className="subject-card-with-image image-left animate-on-scroll">
-              <div className="subject-image-wrapper">
-                <img 
-                  src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Hindi Language" 
-                  className="subject-image"
-                  loading="lazy"
-                />
-                <div className="image-caption">Hindi Literature</div>
-              </div>
+
+            {/* Hindi - Image on Right */}
+            <div className="subject-card-with-image image-right animate-on-scroll">
               <div className="subject-content">
                 <div className="subject-icon-wrapper">
                   <FiBook className="subject-icon" />
@@ -534,6 +596,15 @@ function Home() {
                   <span><FiCheck /> Creative Writing</span>
                 </div>
               </div>
+              <div className="subject-image-wrapper">
+                <img
+                  src="./p7.png"
+                  alt="Hindi Language and Literature Classes"
+                  className="subject-image"
+                  loading="lazy"
+                />
+                <div className="image-caption">Hindi Literature</div>
+              </div>
             </div>
           </div>
         </div>
@@ -547,7 +618,7 @@ function Home() {
             <h2 className="section-title">Student Success Stories</h2>
             <p className="section-subtitle">What our students and parents have to say about their learning journey with us</p>
           </div>
-          
+
           <div className="testimonials-grid">
             <div className="testimonial-card animate-on-scroll">
               <div className="testimonial-rating">
@@ -556,19 +627,19 @@ function Home() {
                 ))}
               </div>
               <p className="testimonial-text">
-                "Ashwanth Maths transformed my approach to calculus. I went from struggling with basic concepts to scoring top marks in my exams. The personalized attention made all the difference."
+                "Mathematics was really good. I can easily understand every hard problems . Then I achieve above 90 marks in Mathematics thank you sathish sir he is the main reason for my achievement😊"
               </p>
               <div className="testimonial-author">
-                <div className="testimonial-avatar" style={{background: 'linear-gradient(135deg, #0a2463, #1e88e5)'}}>
-                  RK
+                <div className="testimonial-avatar" style={{ background: 'linear-gradient(135deg, #0a2463, #1e88e5)' }}>
+                  HG
                 </div>
                 <div className="testimonial-info">
-                  <p className="testimonial-name">Rahul Kumar</p>
+                  <p className="testimonial-name">Harini G</p>
                   <p className="testimonial-position">Engineering Student</p>
                 </div>
               </div>
             </div>
-            
+
             <div className="testimonial-card animate-on-scroll featured">
               <div className="testimonial-rating">
                 {[...Array(5)].map((_, i) => (
@@ -576,19 +647,19 @@ function Home() {
                 ))}
               </div>
               <p className="testimonial-text">
-                "My daughter struggled with math anxiety for years. After joining Ashwanth Maths, her confidence has soared and she now enjoys solving complex problems. The teaching approach here is truly exceptional."
+                " The owner who started this tuition is my maths teacher 🤩 He is really a well skilled teacher and one of the best teacher which I ever met in my school life.He will handle all the subjects and supports the students in a hard time not only in studies in all other things.Apart from being a teacher, he is really a friend to all the students..He will guide the students in a very soft manner.He will work hard for the students to get more marks..Thank You sir😊.Really I'm blessed to be one of his student 🙇🏻‍♀️."
               </p>
               <div className="testimonial-author">
-                <div className="testimonial-avatar" style={{background: 'linear-gradient(135deg, #1e88e5, #0a2463)'}}>
-                  SP
+                <div className="testimonial-avatar" style={{ background: 'linear-gradient(135deg, #1e88e5, #0a2463)' }}>
+                  AM
                 </div>
                 <div className="testimonial-info">
-                  <p className="testimonial-name">Sanjay Patel</p>
-                  <p className="testimonial-position">Parent</p>
+                  <p className="testimonial-name">Aslin Meera</p>
+                  <p className="testimonial-position">Engineering Student</p>
                 </div>
               </div>
             </div>
-            
+
             <div className="testimonial-card animate-on-scroll">
               <div className="testimonial-rating">
                 {[...Array(5)].map((_, i) => (
@@ -596,22 +667,22 @@ function Home() {
                 ))}
               </div>
               <p className="testimonial-text">
-                "The systematic approach to statistics here helped me understand concepts that I had struggled with for years. The real-world applications make learning both practical and interesting."
+                "My son was very back in all subjects in 12 th std past year.i am go to join my son in this tution last 3 months near board exam.now he got 408 marks in public exam.very best tution around tambaram perungalathur area.and also fees was very low.thank you very much satish sir and ramya mam.thank you .my son now join Bsc computerscience with AI."
               </p>
               <div className="testimonial-author">
-                <div className="testimonial-avatar" style={{background: 'linear-gradient(135deg, #0a2463, #1e88e5)'}}>
-                  AN
+                <div className="testimonial-avatar" style={{ background: 'linear-gradient(135deg, #0a2463, #1e88e5)' }}>
+                  PS
                 </div>
                 <div className="testimonial-info">
-                  <p className="testimonial-name">Anita Nair</p>
-                  <p className="testimonial-position">BSc Student</p>
+                  <p className="testimonial-name">Parthiban Selvakumar</p>
+                  <p className="testimonial-position">Parent</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      
+
       {/* Contact Section */}
       <section id="contact" className="contact-section">
         <div className="container">
@@ -620,7 +691,7 @@ function Home() {
             <h2 className="section-title">Get in Touch</h2>
             <p className="section-subtitle">Schedule a consultation or learn more about our programs. We're here to help you succeed.</p>
           </div>
-          
+
           <div className="contact-grid">
             <div className="contact-info animate-on-scroll">
               <div className="contact-card">
@@ -630,46 +701,47 @@ function Home() {
                   </div>
                   <div>
                     <h3>Visit Us</h3>
-                    <p>123 Education Street, Mathematics Building, 2nd Floor</p>
+                    <p>Plot no 4, Bhavani street , Balaji Nagar , Irumbuliyar Chennai , Tamil Nadu 600059</p>
                     <p className="contact-note">Free parking available</p>
                   </div>
                 </div>
-                
+
                 <div className="contact-item">
                   <div className="contact-icon-wrapper">
                     <FiClock className="contact-icon" />
                   </div>
                   <div>
                     <h3>Business Hours</h3>
-                    <p>Monday - Friday: 9am - 7pm</p>
-                    <p>Saturday: 9am - 2pm</p>
-                    <p className="contact-note">Sunday: Closed</p>
+                    <p>Mon - Fri (Morning): 5:30am - 8:30am</p>
+                    <p>Mon - Sat (Evening): 6:00pm - 9:00pm</p>
                   </div>
                 </div>
-                
+
                 <div className="contact-item">
                   <div className="contact-icon-wrapper">
                     <FiPhone className="contact-icon" />
                   </div>
                   <div>
                     <h3>Contact Number</h3>
-                    <p>+91 98765 43210</p>
+                    <p>+91 9790995747</p>
+                    <p>+91 6374621126</p>
+
                     <p className="contact-note">Available 24/7 for emergencies</p>
                   </div>
                 </div>
-                
+
                 <div className="contact-item">
                   <div className="contact-icon-wrapper">
                     <FiMail className="contact-icon" />
                   </div>
                   <div>
                     <h3>Email Us</h3>
-                    <p>info@ashwanthmaths.com</p>
-                    <p>support@ashwanthmaths.com</p>
+                    <p>r.ramyadass@gmail.com</p>
+                    <p>ramyasathish7822@gmail.com</p>
                   </div>
                 </div>
               </div>
-              
+
               <div className="social-links">
                 <h3>Follow Us</h3>
                 <div className="social-icons">
@@ -679,49 +751,73 @@ function Home() {
                   <a href="#" className="social-icon" aria-label="YouTube"><FiYoutube /></a>
                 </div>
               </div>
-              
+
               <div className="contact-buttons">
-                <a href="tel:+919876543210" className="contact-btn primary">
+                <a href="tel:+919790995747" className="contact-btn primary">
                   <FiPhone /> Call Now
                 </a>
-                <a href="https://wa.me/919876543210" className="contact-btn whatsapp">
+                <a href="https://wa.me/919790995747" className="contact-btn whatsapp">
                   <FiMessageCircle /> WhatsApp
                 </a>
               </div>
             </div>
-            
-            <div className="contact-map animate-on-scroll">
-              <div className="map-container">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3686.123456789!2d-122.08467!3d37.422199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDI1JzE5LjkiTiAxMjLCsDA1JzA0LjgiVw!5e0!3m2!1sen!2sus!4v1648765234567!5m2!1sen!2sus" 
-                  width="100%" 
-                  height="100%" 
-                  style={{border: 0}} 
-                  allowFullScreen="" 
-                  loading="lazy" 
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="Ashwanth Maths Location"
-                ></iframe>
-              </div>
-              <div className="map-overlay">
-                <p><FiMapPin /> Click to get directions</p>
+
+            <div className="contact-map animate-on-scroll" style={{ height: 'auto', background: 'transparent', boxShadow: 'none', overflow: 'visible' }}>
+              <div className="map-stack">
+                <div className="map-item-wrapper animate-on-scroll">
+                  <div className="map-label">
+                    <FiMapPin className="label-icon" />
+                    <span>Sri Sandhiya Institution (Irumbuliyur Branch)</span>
+                  </div>
+                  <div className="map-container" style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', height: '350px' }}>
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.789982185133!2d80.19031537431566!3d12.92121568738955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d65b0cf0bbb%3A0x1c0243810f7ebf57!2sSri%20sandhiya%20institute!5e0!3m2!1sen!2sin!4v1773849564554!5m2!1sen!2sin"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen=""
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Sri Sandhiya Institution Location"
+                    ></iframe>
+                  </div>
+                </div>
+
+                <div className="map-item-wrapper animate-on-scroll" style={{ marginTop: '30px' }}>
+                  <div className="map-label">
+                    <FiMapPin className="label-icon" />
+                    <span>Sri Sandhiya Tuition (Main Branch)</span>
+                  </div>
+                  <div className="map-container" style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: 'var(--shadow-md)', height: '350px' }}>
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.939078506173!2d80.1051545!3d12.9116371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525f5c78c2d399%3A0x7e8d01e4df3dba41!2sSri%20sandhiya%20tution!5e0!3m2!1sen!2sin!4v1773847966100!5m2!1sen!2sin"
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      allowFullScreen=""
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Sri Sandhiya Tuition Location"
+                    ></iframe>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      
+
       {/* Footer */}
       <footer className="footer">
         <div className="container">
           <div className="footer-grid">
             <div className="footer-col">
               <div className="footer-logo">
-                <h2>Ashwanth<span>Maths</span></h2>
-                <p>Excellence in Mathematics Education</p>
+                <h2>Sri Sandhiya<span>Institution</span></h2>
+                <p>No. 1 Tuition Centre in Irumbuliyur, Tambaram and Medavakkam </p>
               </div>
               <p className="footer-description">
-                We are committed to providing the highest quality mathematics education to students of all levels. Join us and experience the difference.
+                Sri Sandhiya Institution is committed to providing the highest quality education for IIT-JEE, NEET Foundation, and school subjects to students of all levels. Join us and experience excellence.
               </p>
               <div className="footer-social">
                 <a href="#" aria-label="Facebook"><FiFacebook /></a>
@@ -730,7 +826,7 @@ function Home() {
                 <a href="#" aria-label="YouTube"><FiYoutube /></a>
               </div>
             </div>
-            
+
             <div className="footer-col">
               <h3>Quick Links</h3>
               <ul className="footer-links">
@@ -742,7 +838,7 @@ function Home() {
                 <li><a href="#contact" onClick={() => scrollToSection('contact')}>Contact</a></li>
               </ul>
             </div>
-            
+
             <div className="footer-col">
               <h3>Our Programs</h3>
               <ul className="footer-links">
@@ -754,7 +850,7 @@ function Home() {
                 <li><a href="#">Exam Prep</a></li>
               </ul>
             </div>
-            
+
             <div className="footer-col">
               <h3>Newsletter</h3>
               <p>Subscribe to get updates on new courses and offers</p>
@@ -766,11 +862,11 @@ function Home() {
             </div>
           </div>
         </div>
-        
+
         <div className="footer-bottom">
           <div className="container">
             <div className="footer-bottom-content">
-              <p>&copy; 2025 Ashwanth Maths. All rights reserved.</p>
+              <p>&copy; 2026 Sri Sandhiya Institution. All rights reserved.</p>
               <div className="footer-bottom-links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Service</a>
@@ -782,8 +878,8 @@ function Home() {
       </footer>
 
       {/* Scroll to Top Button */}
-      <button 
-        className={`scroll-top ${showScrollTop ? 'visible' : ''}`} 
+      <button
+        className={`scroll-top ${showScrollTop ? 'visible' : ''}`}
         onClick={scrollToTop}
         aria-label="Scroll to top"
       >

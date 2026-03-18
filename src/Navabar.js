@@ -14,7 +14,7 @@ const Navbar = () => {
       <div className="container header-container">
         <div className="logo">
           <Link to="/">
-            <h1>Ashwanth<span>Maths</span></h1>
+            <h1>Sri Sandhiya<span>Institution</span></h1>
           </Link>
         </div>
 

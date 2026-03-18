@@ -32,7 +32,7 @@ function HomePersonalTuition() {
         <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
           <div className={styles.headerContainer}>
             <div className={styles.logo}>
-              <h1>Ashwanth <span>Maths</span></h1>
+              <h1>Sri Sandhiya <span>Institution</span></h1>
             </div>
             <nav className={styles.navbar}>
               <button onClick={() => navigate(-1)} className={styles.backButton}>
@@ -248,7 +248,7 @@ function HomePersonalTuition() {
         <footer className={styles.footer}>
           <div className={styles.footerContent}>
             <div className={styles.footerLogo}>
-              <h2>Ashwanth <span>Maths</span></h2>
+              <h2>Sri Sandhiya <span>Institution</span></h2>
               <p>Personalized mathematics education for academic excellence</p>
             </div>
             <div className={styles.footerLinks}>
@@ -271,7 +271,7 @@ function HomePersonalTuition() {
             </div>
           </div>
           <div className={styles.footerBottom}>
-            <p>© 2025 Ashwanth Maths. All rights reserved.</p>
+            <p>© 2026 Sri Sandhiya Institution. All rights reserved.</p>
           </div>
         </footer>
       </div>
