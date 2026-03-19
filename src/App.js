@@ -2,10 +2,10 @@
 import { useState, useEffect } from 'react';
 import {
   FiMenu, FiX, FiArrowRight, FiMapPin, FiClock, FiPhone,
-  FiHome, FiBook, FiStar, FiCheck, FiUser, FiAward, FiCalendar,
+  FiBook, FiStar, FiCheck,
   FiMail, FiInstagram, FiFacebook, FiTwitter, FiYoutube,
   FiTrendingUp, FiPieChart, FiBarChart2, FiZap, FiTarget,
-  FiSun, FiMoon, FiDownload, FiShare2, FiHeart, FiBookOpen,
+  FiBookOpen,
   FiUsers, FiMessageCircle // Added missing icons
 } from 'react-icons/fi';
 import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
@@ -21,8 +21,8 @@ function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const [activeSection, setActiveSection] = useState('home');
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+
+
   const [showScrollTop, setShowScrollTop] = useState(false);
   const navigate = useNavigate();
   const [currentAboutSlide, setCurrentAboutSlide] = useState(0);
@@ -62,24 +62,9 @@ function Home() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-      if (window.innerWidth > 768 && isMenuOpen) {
-        setIsMenuOpen(false);
-      }
-    };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, [isMenuOpen]);
 
-  // Toggle dark mode
-  const toggleDarkMode = () => {
-    setIsDarkMode(!isDarkMode);
-    document.body.classList.toggle('dark-mode');
-  };
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -147,7 +132,7 @@ function Home() {
   };
 
   return (
-    <div className={`app ${isDarkMode ? 'dark-mode' : ''}`}>
+    <div className="app">
       {/* Header/Navbar */}
       <header className={`header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="container header-container">
@@ -627,7 +612,7 @@ function Home() {
                 ))}
               </div>
               <p className="testimonial-text">
-                "Mathematics was really good. I can easily understand every hard problems . Then I achieve above 90 marks in Mathematics thank you sathish sir he is the main reason for my achievement😊"
+                "Mathematics was really good. I can easily understand every hard problems . Then I achieve above 90 marks in Mathematics thank you sathish sir he is the main reason for my achievementðŸ˜Š"
               </p>
               <div className="testimonial-author">
                 <div className="testimonial-avatar" style={{ background: 'linear-gradient(135deg, #0a2463, #1e88e5)' }}>
@@ -647,7 +632,7 @@ function Home() {
                 ))}
               </div>
               <p className="testimonial-text">
-                " The owner who started this tuition is my maths teacher 🤩 He is really a well skilled teacher and one of the best teacher which I ever met in my school life.He will handle all the subjects and supports the students in a hard time not only in studies in all other things.Apart from being a teacher, he is really a friend to all the students..He will guide the students in a very soft manner.He will work hard for the students to get more marks..Thank You sir😊.Really I'm blessed to be one of his student 🙇🏻‍♀️."
+                " The owner who started this tuition is my maths teacher ðŸ¤© He is really a well skilled teacher and one of the best teacher which I ever met in my school life.He will handle all the subjects and supports the students in a hard time not only in studies in all other things.Apart from being a teacher, he is really a friend to all the students..He will guide the students in a very soft manner.He will work hard for the students to get more marks..Thank You sirðŸ˜Š.Really I'm blessed to be one of his student ðŸ™‡ðŸ»â€â™€ï¸."
               </p>
               <div className="testimonial-author">
                 <div className="testimonial-avatar" style={{ background: 'linear-gradient(135deg, #1e88e5, #0a2463)' }}>
@@ -745,10 +730,10 @@ function Home() {
               <div className="social-links">
                 <h3>Follow Us</h3>
                 <div className="social-icons">
-                  <a href="#" className="social-icon" aria-label="Facebook"><FiFacebook /></a>
-                  <a href="#" className="social-icon" aria-label="Instagram"><FiInstagram /></a>
-                  <a href="#" className="social-icon" aria-label="Twitter"><FiTwitter /></a>
-                  <a href="#" className="social-icon" aria-label="YouTube"><FiYoutube /></a>
+                  <a href="#!" className="social-icon" aria-label="Facebook"><FiFacebook /></a>
+                  <a href="#!" className="social-icon" aria-label="Instagram"><FiInstagram /></a>
+                  <a href="#!" className="social-icon" aria-label="Twitter"><FiTwitter /></a>
+                  <a href="#!" className="social-icon" aria-label="YouTube"><FiYoutube /></a>
                 </div>
               </div>
 
@@ -820,10 +805,10 @@ function Home() {
                 Sri Sandhiya Institution is committed to providing the highest quality education for IIT-JEE, NEET Foundation, and school subjects to students of all levels. Join us and experience excellence.
               </p>
               <div className="footer-social">
-                <a href="#" aria-label="Facebook"><FiFacebook /></a>
-                <a href="#" aria-label="Instagram"><FiInstagram /></a>
-                <a href="#" aria-label="Twitter"><FiTwitter /></a>
-                <a href="#" aria-label="YouTube"><FiYoutube /></a>
+                <a href="#!" aria-label="Facebook"><FiFacebook /></a>
+                <a href="#!" aria-label="Instagram"><FiInstagram /></a>
+                <a href="#!" aria-label="Twitter"><FiTwitter /></a>
+                <a href="#!" aria-label="YouTube"><FiYoutube /></a>
               </div>
             </div>
 
@@ -842,12 +827,12 @@ function Home() {
             <div className="footer-col">
               <h3>Our Programs</h3>
               <ul className="footer-links">
-                <li><a href="#" onClick={() => handleNavigateToDetails('home-personal')}>Home Personal Tuition</a></li>
-                <li><a href="#">Online Tutoring</a></li>
-                <li><a href="#">Group Classes</a></li>
-                <li><a href="#">Crash Courses</a></li>
-                <li><a href="#">Holiday Camps</a></li>
-                <li><a href="#">Exam Prep</a></li>
+                <li><a href="#!" onClick={() => handleNavigateToDetails('home-personal')}>Home Personal Tuition</a></li>
+                <li><a href="#!">Online Tutoring</a></li>
+                <li><a href="#!">Group Classes</a></li>
+                <li><a href="#!">Crash Courses</a></li>
+                <li><a href="#!">Holiday Camps</a></li>
+                <li><a href="#!">Exam Prep</a></li>
               </ul>
             </div>
 
@@ -868,9 +853,9 @@ function Home() {
             <div className="footer-bottom-content">
               <p>&copy; 2026 Sri Sandhiya Institution. All rights reserved.</p>
               <div className="footer-bottom-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Cookie Policy</a>
+                <a href="#!">Privacy Policy</a>
+                <a href="#!">Terms of Service</a>
+                <a href="#!">Cookie Policy</a>
               </div>
             </div>
           </div>

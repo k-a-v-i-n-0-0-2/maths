@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { 
   FiArrowLeft, FiCheck, FiUser, FiCalendar, 
-  FiClock, FiDollarSign, FiBook, FiAward, FiHome, FiTarget
+  FiClock, FiDollarSign, FiBook, FiHome, FiTarget
 } from 'react-icons/fi';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './HomePersonalTuition.module.css';
