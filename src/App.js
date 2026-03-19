@@ -1,4 +1,4 @@
-// App.js - Complete file with all icons imported
+﻿// App.js - Complete file with all icons imported
 import { useState, useEffect } from 'react';
 import {
   FiMenu, FiX, FiArrowRight, FiMapPin, FiClock, FiPhone,
@@ -612,7 +612,7 @@ function Home() {
                 ))}
               </div>
               <p className="testimonial-text">
-                "Mathematics was really good. I can easily understand every hard problems . Then I achieve above 90 marks in Mathematics thank you sathish sir he is the main reason for my achievementðŸ˜Š"
+                "Mathematics was really good. I can easily understand every hard problems . Then I achieve above 90 marks in Mathematics thank you sathish sir he is the main reason for my achievementÃ°Å¸ËœÅ "
               </p>
               <div className="testimonial-author">
                 <div className="testimonial-avatar" style={{ background: 'linear-gradient(135deg, #0a2463, #1e88e5)' }}>
@@ -632,7 +632,7 @@ function Home() {
                 ))}
               </div>
               <p className="testimonial-text">
-                " The owner who started this tuition is my maths teacher ðŸ¤© He is really a well skilled teacher and one of the best teacher which I ever met in my school life.He will handle all the subjects and supports the students in a hard time not only in studies in all other things.Apart from being a teacher, he is really a friend to all the students..He will guide the students in a very soft manner.He will work hard for the students to get more marks..Thank You sirðŸ˜Š.Really I'm blessed to be one of his student ðŸ™‡ðŸ»â€â™€ï¸."
+                "The owner who started this tuition is my maths teacher. He is really a well skilled teacher and one of the best teacher which I ever met in my school life. He will handle all the subjects and supports the students in a hard time not only in studies in all other things. Apart from being a teacher, he is really a friend to all the students. He will guide the students in a very soft manner. He will work hard for the students to get more marks. Thank You sir. Really I'm blessed to be one of his student."
               </p>
               <div className="testimonial-author">
                 <div className="testimonial-avatar" style={{ background: 'linear-gradient(135deg, #1e88e5, #0a2463)' }}>
@@ -891,3 +891,4 @@ function App() {
 }
 
 export default App;
+
