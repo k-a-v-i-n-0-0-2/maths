@@ -1,4 +1,4 @@
-﻿// App.js - Complete file with all icons imported
+// App.js - Complete file with all icons imported
 import { useState, useEffect } from 'react';
 import {
   FiMenu, FiX, FiArrowRight, FiMapPin, FiClock, FiPhone,
