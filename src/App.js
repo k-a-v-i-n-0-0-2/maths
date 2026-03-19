@@ -208,7 +208,7 @@ function Home() {
                 <span className="hero-stat-label">Years Experience</span>
               </div>
               <div className="hero-stat-item">
-                <span className="hero-stat-number">2500+</span>
+                <span className="hero-stat-number">900+</span>
                 <span className="hero-stat-label">Happy Students</span>
               </div>
               <div className="hero-stat-item">
@@ -302,7 +302,7 @@ function Home() {
                   <span className="stat-label">Years Experience</span>
                 </div>
                 <div className="stat-item">
-                  <span className="stat-number">2500+</span>
+                  <span className="stat-number">900+</span>
                   <span className="stat-label">Students Taught</span>
                 </div>
                 <div className="stat-item">
