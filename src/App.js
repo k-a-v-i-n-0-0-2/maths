@@ -352,7 +352,7 @@ function Home() {
                     <div className="faculty-info">
                       <h5>Ramya Sathish</h5>
                       <p>Physics, Chemistry Specialist & Hindi</p>
-                      <span className="experience-badge">15+ years experience</span>
+                      <span className="experience-badge">13+ years experience</span>
                     </div>
                   </div>
                 </div>
